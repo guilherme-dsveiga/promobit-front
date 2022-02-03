@@ -2,7 +2,6 @@ import Header from "../../shared/header";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getMovie } from "../../lib/films";
-import axios from "axios";
 
 export default function Movie({ movie }) {
   const router = useRouter();
