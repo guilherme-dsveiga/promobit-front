@@ -18,9 +18,6 @@ export default function Home({ popularMovies, allFilters, index }) {
       await getPopularMovies(page).then((res) => setData(res));
     };
     getMovies();
-    {
-      console.log(data);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
@@ -45,6 +42,7 @@ export default function Home({ popularMovies, allFilters, index }) {
             selectedFilter={selectedFilter}
           />
         </div>
+        {console.log(data)}
         <MovieGrid filter={selectedFilter} movies={data} />
         <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
           {page > 1 ? (
@@ -69,21 +67,28 @@ export default function Home({ popularMovies, allFilters, index }) {
           >
             {page}
           </button>
-          <button
-            className="font-bold"
-            onClick={() => router.push(`/?page=${page + 1}`)}
-          >
-            {page + 1}
-          </button>
-          <button
-            className="font-bold"
-            onClick={() => router.push(`/?page=${page + 1}`)}
-          >
-            {">"}
-          </button>
-          <button className="font-bold" onClick={() => handleClick("l")}>
-            Última
-          </button>
+          {page === numOfPages ? null : (
+            <div className="flex justify-center items-center gap-10">
+              <button
+                className="font-bold"
+                onClick={() => router.push(`/?page=${page + 1}`)}
+              >
+                {page + 1}
+              </button>
+              <button
+                className="font-bold"
+                onClick={() => router.push(`/?page=${page + 1}`)}
+              >
+                {">"}
+              </button>
+              <button
+                className="font-bold"
+                onClick={() => router.push(`/?page=${numOfPages}`)}
+              >
+                Última
+              </button>
+            </div>
+          )}
         </div>
       </main>
 

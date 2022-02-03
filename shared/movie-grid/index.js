@@ -7,8 +7,8 @@ function MovieGrid({ filter, movies }) {
 
   useEffect(() => {
     let tempArr = [];
-    if (movies.results) {
-      movies.results.map((movie) => {
+    if (movies) {
+      movies.map((movie) => {
         movie.genre_ids.map((id) => {
           if (filter === id) {
             tempArr.push(movie);
@@ -21,9 +21,9 @@ function MovieGrid({ filter, movies }) {
     } else if (filter != "") {
       setData("");
     } else {
-      setData(movies.results);
+      setData(movies);
     }
-  }, [filter, movies.results]);
+  }, [filter, movies]);
 
   return (
     <div className="flex flex-wrap mt-10 gap-4 justify-center">
@@ -32,7 +32,7 @@ function MovieGrid({ filter, movies }) {
           <Link key={key} passHref href={`/films/${movie.id}`}>
             <div className="cursor-pointer">
               <Image
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                src={`${process.env.IMAGE_URL}${movie.poster_path}`}
                 alt={`Image do filme ${movie.title}`}
                 width={"154px"}
                 height={"232px"}
@@ -47,7 +47,7 @@ function MovieGrid({ filter, movies }) {
           </Link>
         ))
       ) : (
-        <>Nenhum filme encontrado!</>
+        <p className="text-lg">Nenhum filme foi encontrado!</p>
       )}
     </div>
   );
