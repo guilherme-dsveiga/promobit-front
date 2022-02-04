@@ -29,8 +29,8 @@ export default function Home({ popularMovies, allFilters, index }) {
     <div className="flex flex-col">
       <Header />
       <main className="flex flex-col">
-        <div className="bg-dark-purple pl-4 py-10">
-          <h2 className="text-2xl font-bold text-white pr-10">
+        <div className="bg-dark-purple pl-4 py-10 md:px-40 xl:px-80 md:flex md:flex-col md:justify-center md:items-center">
+          <h2 className="text-2xl font-bold text-white pr-10 md:text-center">
             Milhões de Filmes, séries e pessoas para descobrir. Explore já.
           </h2>
           <p className="uppercase text-sm mt-9 mb-2 text-white font-bold">

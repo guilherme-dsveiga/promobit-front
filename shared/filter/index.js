@@ -14,7 +14,7 @@ function Filter({ allFilters, setFilter, selectedFilter }) {
     setIsFilter(false);
   };
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap md:justify-center md:items-center">
       {allFilters
         ? allFilters.map((filter, key) => (
             <a

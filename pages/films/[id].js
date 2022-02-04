@@ -27,7 +27,7 @@ export default function Movie({
 
   useEffect(() => {
     setData(movie);
-    setSliced(movieByGenre.results.slice(0, 4));
+    setSliced(movieByGenre.results.slice(0, 6));
   }, [movie, movieByGenre.results]);
 
   return (
@@ -35,17 +35,18 @@ export default function Movie({
       <Header />
       {data ? (
         <main>
-          <article className="bg-dark-purple pb-20 px-4">
-            <div className="pt-8 flex justify-center items-center">
-              <Image
-                className="rounded drop-shadow-md"
-                src={process.env.IMAGE_URL + movie.poster_path}
-                width={"186px"}
-                height={"279px"}
-                alt={movie.title}
-              />
+          <article className="bg-dark-purple pb-20 px-4 lg:flex lg:items-center lg:px-20">
+            <div className="lg:absolute pt-8 lg:pt-0 lg:top-32">
+              <div className="flex mx-auto w-[186px] h-[279px] lg:w-[383px] lg:h-[574px] relative">
+                <Image
+                  className="rounded lg:rounded-lg drop-shadow-md"
+                  src={process.env.IMAGE_URL + movie.poster_path}
+                  layout="fill"
+                  alt={movie.title}
+                />
+              </div>
             </div>
-            <div className="pt-10 text-white text-lg">
+            <div className="pt-10 text-white text-lg lg:pl-[450px]">
               <h2 className="text-white text-3xl font-bold">
                 {movie.title + " (" + year + ")"}
               </h2>
@@ -95,7 +96,7 @@ export default function Movie({
               </div>
             </div>
           </article>
-          <div className="px-4">
+          <div className="px-4 lg:px-20 xl:mt-20">
             <div className="mt-8 ">
               <h2 className="font-bold text-3xl">Elenco Original</h2>
               {/*transformar em componente */}
@@ -144,20 +145,22 @@ export default function Movie({
             <div className="mt-11">
               <h2 className="font-bold text-3xl">Trailer</h2>
               {movieVideos[0] ? (
-                <iframe
-                  width="100%"
-                  height="315"
-                  src={`https://www.youtube.com/embed/${movieVideos[0].key}`}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
+                <div className="h-[315px] md:h-[512px] lg:max-w-[907px] lg:mt-6">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src={`https://www.youtube.com/embed/${movieVideos[0].key}`}
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                </div>
               ) : (
                 <p className="mt-10 text-lg text-center">
                   Nenhum Video foi encontrado!
                 </p>
               )}
             </div>
-            <div className="mt-12">
+            <div className="mt-12 lg:flex lg:flex-col lg:justify-center lg:items-start">
               <h2 className="font-bold text-3xl">Recomendações</h2>
               <MovieGrid filter="" movies={sliced} />
             </div>
