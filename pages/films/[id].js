@@ -10,6 +10,7 @@ import {
 import Header from "../../shared/header";
 import ProgressCircle from "../../shared/progress-circle";
 import MovieGrid from "../../shared/movie-grid";
+import Loading from "../../assets/loading.gif";
 
 export default function Movie({
   movie,
@@ -166,7 +167,11 @@ export default function Movie({
             </div>
           </div>
         </main>
-      ) : null}
+      ) : (
+        <div className="flex justify-center items-center">
+          <Image src={Loading} width={200} height={200} alt="Carregamento" />
+        </div>
+      )}
     </div>
   );
 }

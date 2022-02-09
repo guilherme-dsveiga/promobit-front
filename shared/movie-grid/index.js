@@ -18,8 +18,6 @@ function MovieGrid({ filter, movies, rawData, setDataLength, setNoMovie }) {
         });
       }
     }
-
-    console.log(filter);
     if (setDataLength) {
       if (tempArr.length == 0) {
         if (filter != "") {
@@ -51,7 +49,6 @@ function MovieGrid({ filter, movies, rawData, setDataLength, setNoMovie }) {
         data.map((movie, key) => (
           <Link key={key} passHref href={`/films/${movie.id}`}>
             <div className="cursor-pointer">
-              {setNoMovie(false)}
               <Image
                 src={`${process.env.IMAGE_URL}${movie.poster_path}`}
                 alt={`Image do filme ${movie.title}`}
@@ -68,10 +65,7 @@ function MovieGrid({ filter, movies, rawData, setDataLength, setNoMovie }) {
           </Link>
         ))
       ) : (
-        <p className="text-lg">
-          {setNoMovie(true)}
-          Nenhum filme foi encontrado!
-        </p>
+        <p className="text-lg">Nenhum filme foi encontrado!</p>
       )}
     </div>
   );

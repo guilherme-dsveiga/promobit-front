@@ -1,16 +1,17 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Header from "../shared/header";
 import Filter from "../shared/filter";
 import MovieGrid from "../shared/movie-grid";
+import Loading from "../assets/loading.gif";
 import { getPopularMovies, getFilters } from "../lib/films";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 export default function Home({ allFilters, index }) {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [rawData, setRawData] = useState([]);
-  const [noMovie, setNoMovie] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [dataLength, setDataLength] = useState();
   const [page, setPage] = useState(router.query.page | 1);
   const [selectedFilter, setSelectedFilter] = useState([]);
@@ -28,6 +29,8 @@ export default function Home({ allFilters, index }) {
       });
     };
     getMovies();
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 300);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, selectedFilter]);
 
@@ -53,15 +56,24 @@ export default function Home({ allFilters, index }) {
           />
         </div>
         <div className="lg:px-24 md:px-12 px-3">
-          <MovieGrid
-            filter={selectedFilter}
-            movies={data}
-            rawData={rawData}
-            setDataLength={setDataLength}
-            setNoMovie={setNoMovie}
-          />
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <Image
+                src={Loading}
+                width={200}
+                height={200}
+                alt="Carregamento"
+              />
+            </div>
+          ) : (
+            <MovieGrid
+              filter={selectedFilter}
+              movies={data}
+              rawData={rawData}
+              setDataLength={setDataLength}
+            />
+          )}
         </div>
-        {console.log(dataLength)}
         {dataLength >= 20 ? (
           <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
             {page > 1 ? (
