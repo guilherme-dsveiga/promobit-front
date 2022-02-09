@@ -1,34 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📦 Promobit Front-End Challenge
 
-## Getting Started
+Repositório feito para o desafio técnico da vaga de Desenvolvedor Front-End Junior da empresa Promobit!
 
-First, run the development server:
+# 📌 Como rodar localmente
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Para rodar o construir o projeto, o usuário deverá clonar este repositório utilizando o comando "git clone https://github.com/guilherme-dsveiga/promobit-front.git" caso tenha o git instalado na máquina, caso contrário, o download do .zip do repositório se encontra no mesmo link, clicando no botão "code" e logo após "Download ZIP"
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Feito o clone do repositório, o usuário deverá primeiramente ter NodeJs instalado na sua máquina, caso não tenha, o mesmo pode ser obtido em: "https://nodejs.org/en/". Após a instalação, o usuário deve abrir o terminal no diretório onde se encontra o projeto e executar o comando "npm install" ou "yarn add" caso você utilize yarn.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Após instalado as dependências do projeto, o usuário pode opcionalmente porém preferencialmente, colocar sua própria chave da API do The Movie Database, que pode ser solicitada seguindo as instruções do seguinte link: "https://developers.themoviedb.org/3/getting-started/introduction"
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Feita a instalação das dependências e a alteração da chave, basta apenas executar o comando "npm run dev" no terminal, abrir o navegador e curtir!
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 👨🏻‍💻 Tecnologias Utilizadas
 
-## Learn More
+Foi utilizado primariamente ReactJs como principal biblioteca/ferramenta para a construção do app, utilizando também da framework NextJs para cuidar não só das rotas dinamicas, como também da renderização por parte do servidor.
 
-To learn more about Next.js, take a look at the following resources:
+Eu escolhi utilizar essa tecnologia pois vi no desafio uma oportunidade de me aprimorar técnicamente, já que foi meu primeiro projeto utilizando NextJs e fiquei bastante contente com o resultado, acredito que seja uma tecnologia com uma crescente muito grande no mercado e que será de bastante importancia para desenvolvedores React.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📩 Contato
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Linkedin: https://linkedin.com/in/guilherme-dsveiga
+Github: https://github.com/guilherme-dsveiga
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Desenvolvido com ❤️ por Guilherme Veiga
