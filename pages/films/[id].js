@@ -34,7 +34,7 @@ export default function Movie({
     <div>
       <Header />
       {data ? (
-        <main>
+        <main className="font-roboto">
           <article className="bg-dark-purple pb-20 px-4 lg:flex lg:items-center lg:px-20">
             <div className="lg:absolute pt-8 lg:pt-0 lg:top-32">
               <div className="flex mx-auto w-[186px] h-[279px] lg:w-[383px] lg:h-[574px] relative">
@@ -96,7 +96,7 @@ export default function Movie({
               </div>
             </div>
           </article>
-          <div className="px-4 lg:px-20 xl:mt-20">
+          <div className="px-4 md:mt-20 lg:px-20">
             <div className="mt-8 ">
               <h2 className="font-bold text-3xl">Elenco Original</h2>
               {/*transformar em componente */}

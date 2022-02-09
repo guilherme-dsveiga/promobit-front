@@ -6,16 +6,25 @@ import { getPopularMovies, getFilters } from "../lib/films";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function Home({ popularMovies, allFilters, index }) {
+export default function Home({ allFilters, index }) {
   const [data, setData] = useState([]);
+  const [rawData, setRawData] = useState([]);
   const [page, setPage] = useState(1);
-  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState([]);
   const router = useRouter();
-  const numOfPages = 500;
+  const numOfPages = 20;
 
   useEffect(() => {
     const getMovies = async () => {
-      await getPopularMovies(page).then((res) => setData(res));
+      await getPopularMovies(page).then((res) => {
+        setRawData(res);
+        let temp = [];
+        for (let i = (page - 1) * numOfPages; i < numOfPages * page; i++) {
+          console.log(i);
+          temp.push(res[i]);
+        }
+        setData(temp);
+      });
     };
     getMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,7 +35,7 @@ export default function Home({ popularMovies, allFilters, index }) {
   }, [index]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col font-roboto">
       <Header />
       <main className="flex flex-col">
         <div className="bg-dark-purple pl-4 py-10 md:px-40 xl:px-80 md:flex md:flex-col md:justify-center md:items-center">
@@ -43,7 +52,9 @@ export default function Home({ popularMovies, allFilters, index }) {
           />
         </div>
         {console.log(data)}
-        <MovieGrid filter={selectedFilter} movies={data} />
+        <div className="lg:px-24 md:px-12 px-3">
+          <MovieGrid filter={selectedFilter} movies={data} rawData={rawData} />
+        </div>
         <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
           {page > 1 ? (
             <button
@@ -99,12 +110,10 @@ export default function Home({ popularMovies, allFilters, index }) {
 
 export const getServerSideProps = async ({ query: { page = 1 } }) => {
   const filters = await getFilters();
-  const popularMovies = await getPopularMovies();
   const index = page;
   return {
     props: {
       allFilters: filters,
-      popularMovies: popularMovies,
       index: index,
     },
   };

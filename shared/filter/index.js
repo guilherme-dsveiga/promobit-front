@@ -9,12 +9,12 @@ function Filter({ allFilters, setFilter, selectedFilter }) {
     setIsFilter(true);
   };
   const handleRemoveFilter = () => {
-    setFilter("");
+    setFilter([]);
     console.log(selectedFilter);
     setIsFilter(false);
   };
   return (
-    <div className="flex flex-wrap md:justify-center md:items-center">
+    <div className="flex flex-wrap md:justify-center md:items-center font-roboto">
       {allFilters
         ? allFilters.map((filter, key) => (
             <a

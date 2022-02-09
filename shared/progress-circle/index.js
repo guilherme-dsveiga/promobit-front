@@ -1,6 +1,6 @@
 function ProgressCircle({ progress }) {
   return (
-    <div className="relative w-[80px]">
+    <div className="relative w-[80px] font-roboto">
       <div className="relative flex justify-center items-center">
         <div className="absolute text-lime rounded-full w-[60px] h-[60px] flex bg-purple-progress justify-center items-center font-bold text-lg">
           {`${progress}%`}

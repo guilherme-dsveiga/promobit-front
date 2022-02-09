@@ -2,22 +2,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function MovieGrid({ filter, movies }) {
+function MovieGrid({ filter, movies, rawData }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     let tempArr = [];
-    if (movies) {
-      movies.map((movie) => {
-        movie.genre_ids.map((id) => {
-          if (filter === id) {
-            tempArr.push(movie);
-          }
+    if (filter.length == 0) {
+      setData(movies);
+    } else {
+      if (movies) {
+        rawData.map((movie) => {
+          movie.genre_ids.map((id) => {
+            if (filter === id) {
+              tempArr.push(movie);
+            }
+          });
         });
-      });
+      }
     }
+
     if (tempArr != "") {
-      setData(tempArr);
+      setData(tempArr.slice(0, 20));
     } else if (filter != "") {
       setData("");
     } else {
@@ -26,7 +31,7 @@ function MovieGrid({ filter, movies }) {
   }, [filter, movies]);
 
   return (
-    <div className="flex flex-wrap mt-10 gap-4 justify-center">
+    <div className="flex flex-wrap mt-10 gap-4 justify-center font-roboto">
       {data ? (
         data.map((movie, key) => (
           <Link key={key} passHref href={`/films/${movie.id}`}>
@@ -52,13 +57,5 @@ function MovieGrid({ filter, movies }) {
     </div>
   );
 }
-
-/*
-filter ? 
-movies.genre_list.map((n) => {
-  filter === movies.genre_list[n] ? renderizar componente : null
-  : null
-})
- */
 
 export default MovieGrid;
