@@ -18,11 +18,12 @@ function MovieGrid({ filter, movies, rawData, setDataLength }) {
         });
       }
     }
-
-    if (tempArr.length == 0) {
-      setDataLength(movies.length);
-    } else {
-      setDataLength(tempArr.length);
+    if (setDataLength) {
+      if (tempArr.length == 0) {
+        setDataLength(movies.length);
+      } else {
+        setDataLength(tempArr.length);
+      }
     }
 
     tempArr = tempArr.filter(
