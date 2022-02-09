@@ -4,11 +4,11 @@ Repositório feito para o desafio técnico da vaga de Desenvolvedor Front-End Ju
 
 # 📌 Como rodar localmente
 
-Para rodar o construir o projeto, o usuário deverá clonar este repositório utilizando o comando "git clone https://github.com/guilherme-dsveiga/promobit-front.git" caso tenha o git instalado na máquina, caso contrário, o download do .zip do repositório se encontra no mesmo link, clicando no botão "code" e logo após "Download ZIP"
+Para rodar o construir o projeto, o usuário deverá clonar este repositório utilizando o comando "git clone https://github.com/guilherme-dsveiga/promobit-front.git" caso tenha o git instalado na máquina, caso contrário, o download do .zip do repositório se encontra no mesmo link, clicando no botão "code" e logo após "Download ZIP".
 
 Feito o clone do repositório, o usuário deverá primeiramente ter NodeJs instalado na sua máquina, caso não tenha, o mesmo pode ser obtido em: "https://nodejs.org/en/". Após a instalação, o usuário deve abrir o terminal no diretório onde se encontra o projeto e executar o comando "npm install" ou "yarn add" caso você utilize yarn.
 
-Após instalado as dependências do projeto, o usuário pode opcionalmente porém preferencialmente, colocar sua própria chave da API do The Movie Database, que pode ser solicitada seguindo as instruções do seguinte link: "https://developers.themoviedb.org/3/getting-started/introduction"
+Após instalado as dependências do projeto, o usuário pode opcionalmente porém preferencialmente, colocar sua própria chave da API do The Movie Database, que pode ser solicitada seguindo as instruções do seguinte link: "https://developers.themoviedb.org/3/getting-started/introduction". A mesma deve ser colocada no lugar da existente em "next.config.js" ▶ "API_KEY: 'trocar-por-sua-chave'".
 
 Feita a instalação das dependências e a alteração da chave, basta apenas executar o comando "npm run dev" no terminal, abrir o navegador e curtir!
 
