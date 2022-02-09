@@ -14,9 +14,11 @@ Feita a instalação das dependências e a alteração da chave, basta apenas ex
 
 ## 👨🏻‍💻 Tecnologias Utilizadas
 
-Foi utilizado primariamente ReactJs como principal biblioteca/ferramenta para a construção do app, utilizando também da framework NextJs para cuidar não só das rotas dinamicas, como também da renderização por parte do servidor.
+Foi utilizado primariamente ReactJs como principal biblioteca/ferramenta para a construção do app, TailwindCSS para a estilização e a framework NextJs para cuidar não só das rotas dinamicas, como também da renderização por parte do servidor.
 
-Eu escolhi utilizar essa tecnologia pois vi no desafio uma oportunidade de me aprimorar técnicamente, já que foi meu primeiro projeto utilizando NextJs e fiquei bastante contente com o resultado, acredito que seja uma tecnologia com uma crescente muito grande no mercado e que será de bastante importancia para desenvolvedores React.
+Eu escolhi utilizar NextJs pois vi no desafio uma oportunidade de me aprimorar técnicamente, já que foi meu primeiro projeto utilizando-a e fiquei bastante contente com o resultado, acredito que seja uma tecnologia com uma crescente muito grande no mercado e que será de bastante importancia para desenvolvedores React.
+
+A escolha do Tailwind foi facil para mim, por ser uma framework que ja utilizei diversas vezes e me sinto muito confortavel, além da mesma ser recente e vem sendo bem falada e utilizada no mundo do Front-End.
 
 ## 📩 Contato
 
