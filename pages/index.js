@@ -7,11 +7,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export default function Home({ allFilters, index }) {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [rawData, setRawData] = useState([]);
-  const [page, setPage] = useState(1);
+  const [dataLength, setDataLength] = useState();
+  const [page, setPage] = useState(router.query.page | 1);
   const [selectedFilter, setSelectedFilter] = useState([]);
-  const router = useRouter();
   const numOfPages = 20;
 
   useEffect(() => {
@@ -20,7 +21,6 @@ export default function Home({ allFilters, index }) {
         setRawData(res);
         let temp = [];
         for (let i = (page - 1) * numOfPages; i < numOfPages * page; i++) {
-          console.log(i);
           temp.push(res[i]);
         }
         setData(temp);
@@ -28,7 +28,7 @@ export default function Home({ allFilters, index }) {
     };
     getMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [page, selectedFilter]);
 
   useEffect(() => {
     setPage(parseInt(index, 10));
@@ -48,62 +48,66 @@ export default function Home({ allFilters, index }) {
           <Filter
             allFilters={allFilters}
             setFilter={setSelectedFilter}
-            selectedFilter={selectedFilter}
+            setPage={setPage}
           />
         </div>
-        {console.log(data)}
         <div className="lg:px-24 md:px-12 px-3">
-          <MovieGrid filter={selectedFilter} movies={data} rawData={rawData} />
+          <MovieGrid
+            filter={selectedFilter}
+            movies={data}
+            rawData={rawData}
+            setDataLength={setDataLength}
+          />
         </div>
-        <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
-          {page > 1 ? (
+        {dataLength >= 20 ? (
+          <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
+            {page > 1 ? (
+              <button
+                className="font-bold"
+                onClick={() => router.push(`/?page=${1}`)}
+              >
+                Primeira
+              </button>
+            ) : null}
+            {page > 1 ? (
+              <button
+                className="font-bold"
+                onClick={() => router.push(`/?page=${page - 1}`)}
+              >
+                {page - 1}
+              </button>
+            ) : null}
             <button
               className="font-bold"
-              onClick={() => router.push(`/?page=${1}`)}
+              onClick={() => router.push(`/?page=${page}`)}
             >
-              Primeira
+              {page}
             </button>
-          ) : null}
-          {page > 1 ? (
-            <button
-              className="font-bold"
-              onClick={() => router.push(`/?page=${page - 1}`)}
-            >
-              {page - 1}
-            </button>
-          ) : null}
-          <button
-            className="font-bold"
-            onClick={() => router.push(`/?page=${page}`)}
-          >
-            {page}
-          </button>
-          {page === numOfPages ? null : (
-            <div className="flex justify-center items-center gap-10">
-              <button
-                className="font-bold"
-                onClick={() => router.push(`/?page=${page + 1}`)}
-              >
-                {page + 1}
-              </button>
-              <button
-                className="font-bold"
-                onClick={() => router.push(`/?page=${page + 1}`)}
-              >
-                {">"}
-              </button>
-              <button
-                className="font-bold"
-                onClick={() => router.push(`/?page=${numOfPages}`)}
-              >
-                Última
-              </button>
-            </div>
-          )}
-        </div>
+            {page === numOfPages ? null : (
+              <div className="flex justify-center items-center gap-10">
+                <button
+                  className="font-bold"
+                  onClick={() => router.push(`/?page=${page + 1}`)}
+                >
+                  {page + 1}
+                </button>
+                <button
+                  className="font-bold"
+                  onClick={() => router.push(`/?page=${page + 1}`)}
+                >
+                  {">"}
+                </button>
+                <button
+                  className="font-bold"
+                  onClick={() => router.push(`/?page=${numOfPages}`)}
+                >
+                  Última
+                </button>
+              </div>
+            )}
+          </div>
+        ) : null}
       </main>
-
-      <footer className=""></footer>
     </div>
   );
 }

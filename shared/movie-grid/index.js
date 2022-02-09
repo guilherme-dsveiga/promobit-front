@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-function MovieGrid({ filter, movies, rawData }) {
+function MovieGrid({ filter, movies, rawData, setDataLength }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -12,14 +12,22 @@ function MovieGrid({ filter, movies, rawData }) {
     } else {
       if (movies) {
         rawData.map((movie) => {
-          movie.genre_ids.map((id) => {
-            if (filter === id) {
-              tempArr.push(movie);
-            }
-          });
+          if (filter.every((val) => movie.genre_ids.includes(val))) {
+            tempArr.push(movie);
+          }
         });
       }
     }
+
+    if (tempArr.length == 0) {
+      setDataLength(movies.length);
+    } else {
+      setDataLength(tempArr.length);
+    }
+
+    tempArr = tempArr.filter(
+      (value, index, self) => index === self.findIndex((t) => t.id === value.id)
+    );
 
     if (tempArr != "") {
       setData(tempArr.slice(0, 20));
@@ -28,10 +36,10 @@ function MovieGrid({ filter, movies, rawData }) {
     } else {
       setData(movies);
     }
-  }, [filter, movies]);
+  }, [filter, movies, rawData]);
 
   return (
-    <div className="flex flex-wrap mt-10 gap-4 justify-center font-roboto">
+    <div className="flex flex-wrap my-10 gap-4 justify-center font-roboto">
       {data ? (
         data.map((movie, key) => (
           <Link key={key} passHref href={`/films/${movie.id}`}>
