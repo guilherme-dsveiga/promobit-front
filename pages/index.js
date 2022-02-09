@@ -10,6 +10,7 @@ export default function Home({ allFilters, index }) {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [rawData, setRawData] = useState([]);
+  const [noMovie, setNoMovie] = useState(false);
   const [dataLength, setDataLength] = useState();
   const [page, setPage] = useState(router.query.page | 1);
   const [selectedFilter, setSelectedFilter] = useState([]);
@@ -57,8 +58,10 @@ export default function Home({ allFilters, index }) {
             movies={data}
             rawData={rawData}
             setDataLength={setDataLength}
+            setNoMovie={setNoMovie}
           />
         </div>
+        {console.log(dataLength)}
         {dataLength >= 20 ? (
           <div className="flex mt-16 mb-5 justify-center items-center gap-10 text-purple">
             {page > 1 ? (
